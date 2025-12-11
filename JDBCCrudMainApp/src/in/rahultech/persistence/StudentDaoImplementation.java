@@ -2,6 +2,7 @@ package in.rahultech.persistence;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.Statement;
 
 import in.rahultech.dto.Student;
 
@@ -43,14 +44,49 @@ public class StudentDaoImplementation implements RStudentDao {
 
 	@Override
 	public String updateStudent(Integer sid, String sname, Integer sage, String saddress) {
-		// TODO Auto-generated method stub
-		return null;
+		final String QUERY = "update Student1 set sName = ?,sAge = ?,sAddress = ? where sid=?;";
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		try {
+			Connection con = DriverManager.getConnection(DBURL,DBUSERNAME,DBPASS);
+			PreparedStatement pstmt = con.prepareStatement(QUERY);
+			pstmt.setString(1, sname);
+			pstmt.setInt(2, sage);
+			pstmt.setString(3, saddress);
+			pstmt.setInt(4, sid);
+			int rowsAffected = pstmt.executeUpdate();
+			if(rowsAffected>0) return "success";
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return "fail";
 	}
 
 	@Override
 	public String deleteStudent(Integer sid) {
-		// TODO Auto-generated method stub
-		return null;
+		final String QUERY = "DELETE FROM Student1 WHERE id = ?;";
+		
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		
+		try {
+			Connection con = DriverManager.getConnection(DBURL,DBUSERNAME,DBPASS);
+			PreparedStatement pstmt = con.prepareStatement(QUERY);
+			pstmt.setInt(1, sid);
+			int rowsAffected = pstmt.executeUpdate();
+			if(rowsAffected>0) return "success";
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+		return "fail";
 	}
 
 }

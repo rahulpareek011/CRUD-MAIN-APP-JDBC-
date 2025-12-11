@@ -22,14 +22,16 @@ public class StudentServiceImplementation implements RStudentService {
 
 	@Override
 	public String updateStudent(Integer sid, String sname, Integer sage, String saddress) {
-		// TODO Auto-generated method stub
-		return null;
+		daoService = StudentDaoFactory.getStudentDao();
+		String msg = daoService.updateStudent(sid, sname, sage, saddress);
+		return msg;
 	}
 
 	@Override
 	public String deleteStudent(Integer sid) {
-		// TODO Auto-generated method stub
-		return null;
+		daoService = StudentDaoFactory.getStudentDao();
+		String msg = daoService.deleteStudent(sid);
+		return msg;
 	}
 	
 }
