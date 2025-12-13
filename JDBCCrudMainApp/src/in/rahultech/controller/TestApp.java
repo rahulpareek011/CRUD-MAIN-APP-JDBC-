@@ -52,10 +52,10 @@ public class TestApp {
 							break;
 						}
 						case 2: {
-							System.out.println("Student Show logic");
-//							int id = sc.nextInt();
-//							Student s1 = studentService.searchStudent(id);
-//							System.out.println(s1.toString());
+							System.out.println("Enter the user id: ");
+							int id = sc.nextInt();
+							Student s1 = studentService.searchStudent(id);
+							System.out.println(s1.toString());
 							break;
 						}
 						case 3: {

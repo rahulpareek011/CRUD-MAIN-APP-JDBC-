@@ -3,7 +3,6 @@ package in.rahultech.Service;
 import in.rahultech.daofactory.StudentDaoFactory;
 import in.rahultech.dto.Student;
 import in.rahultech.persistence.RStudentDao;
-import in.rahultech.persistence.StudentDaoImplementation;
 
 public class StudentServiceImplementation implements RStudentService {
 
@@ -16,8 +15,9 @@ public class StudentServiceImplementation implements RStudentService {
 
 	@Override
 	public Student searchStudent(Integer sid) {
-		// TODO Auto-generated method stub
-		return null;
+		daoService = StudentDaoFactory.getStudentDao();
+		Student s1 = daoService.searchStudent(sid);
+		return s1;
 	}
 
 	@Override
